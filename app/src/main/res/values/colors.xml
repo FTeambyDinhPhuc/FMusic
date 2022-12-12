@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    //base
+    <!--base-->
     <color name="background">#0f0f0f</color>
     <color name="white">#f9f9f9</color>
     <color name="black">#111111</color>
     <color name="light_grey">#cfcfcf</color>
     <color name="grey">#888888</color>
     <color name="dark_grey">#565656</color>
-    //primary
+    <!--primary-->
     <color name="primary">#bb2649</color>
     <color name="on_primary">#fff5f6</color>
     <color name="primary_container">#910030</color>
     <color name="on_primary_container">#ffd9dc</color>
-    //secondary
+    <!--secondary-->
     <color name="secondary">#765659</color>
     <color name="on_secondary">#fbf9f9</color>
     <color name="secondary_container">#5c3f42</color>
     <color name="on_secondary_container">#ffd9dc</color>
-    //surface
+    <!--surface-->
     <color name="s1">#1b1b1b</color>
     <color name="s2">#222222</color>
     <color name="s3">#292929</color>
@@ -25,14 +25,14 @@
     <color name="s5">#313131</color>
     <color name="surf_var">#252525</color>
     <color name="on_surf_var">#d2d2d2</color>
-    //inverse surface
+    <!--inverse surface-->
     <color name="inv_surf">#fdfcfc</color>
     <color name="on_inv_surf_1">#292929</color>
     <color name="on_inv_surf_2">#d2607b</color>
-    //outline
+    <!--outline-->
     <color name="outline">#666666</color>
-    <color name="outline_var">rgba(122, 122, 122, 0.6)</color>
-    //others
+<!--    <color name="outline_var">rgba(122, 122, 122, 0.6)</color>-->
+    <!--others-->
     <color name="warning">#da9d10</color>
     <color name="error">#da3910</color>
     <color name="success">#25d515</color>

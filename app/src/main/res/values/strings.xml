@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">FMusic</string>
-    <string name="tieude">name</string>
+
+    <!--nút chuyển màn hình-->
+    <string name="bn_home">Home</string>
+    <string name="bn_search">Search</string>
+    <string name="bn_library">Library</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
