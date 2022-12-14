@@ -14,24 +14,33 @@ import com.example.fmusic.fragments.SearchFragment
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var homeLayout: LinearLayout
+    private lateinit var searchLayout: LinearLayout
+    private lateinit var libraryLayout: LinearLayout
 
+    private lateinit var homeImage: ImageView
+    private lateinit var searchImage: ImageView
+    private lateinit var libraryImage: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        AnhXaView()
         XuLyBottomNavigationBar()
+    }
+
+    private fun AnhXaView(){
+        homeLayout = findViewById<LinearLayout>(R.id.homeLayout)
+        searchLayout = findViewById<LinearLayout>(R.id.searchLayout)
+        libraryLayout = findViewById<LinearLayout>(R.id.libraryLayout)
+
+        homeImage = findViewById<ImageView>(R.id.homeImage)
+        searchImage = findViewById<ImageView>(R.id.searchImage)
+        libraryImage = findViewById<ImageView>(R.id.libraryImage)
     }
 
     private fun XuLyBottomNavigationBar(){
         var selectedTab: Int = 1
-        val homeLayout = findViewById<LinearLayout>(R.id.homeLayout)
-        val searchLayout = findViewById<LinearLayout>(R.id.searchLayout)
-        val libraryLayout = findViewById<LinearLayout>(R.id.libraryLayout)
-
-        val homeImage = findViewById<ImageView>(R.id.homeImage)
-        val searchImage = findViewById<ImageView>(R.id.searchImage)
-        val libraryImage = findViewById<ImageView>(R.id.libraryImage)
 
         //set fragment mặc định hiển thị
         supportFragmentManager.beginTransaction()
