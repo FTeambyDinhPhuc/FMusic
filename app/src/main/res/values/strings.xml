@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">FMusic</string>
-
     <!--nút chuyển màn hình-->
-    <string name="bn_home">Home</string>
+    <string name="bn_music">Music</string>
+    <string name="bn_radio">Radio</string>
     <string name="bn_search">Search</string>
     <string name="bn_library">Library</string>
     <!-- TODO: Remove or change this placeholder text -->

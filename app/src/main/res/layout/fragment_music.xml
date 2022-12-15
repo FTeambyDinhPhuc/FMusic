@@ -3,17 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.HomeFragment">
+    tools:context=".fragments.MusicFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:id="@+id/txtFmHome"
+        android:id="@+id/txtFmMusic"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-
         android:textColor="@color/white"
-        android:textStyle="bold"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
 </FrameLayout>

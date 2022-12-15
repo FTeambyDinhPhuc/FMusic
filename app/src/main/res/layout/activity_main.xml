@@ -21,27 +21,52 @@
         android:layout_alignParentBottom="true">
 
         <LinearLayout
-            android:id="@+id/homeLayout"
+            android:id="@+id/musicLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
             android:layout_weight="1">
             <ImageView
-                android:id="@+id/homeImage"
+                android:id="@+id/musicImage"
                 android:background="@drawable/round_back_icon_selected"
                 android:layout_marginBottom="4dp"
                 android:paddingHorizontal="20dp"
                 android:paddingVertical="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_home_selected_24"/>
+                android:src="@drawable/ic_album_selected"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/bn_home"
+                android:text="@string/bn_music"
                 android:letterSpacing="0.04"
-                android:textSize="12sp"
+                android:textSize="@dimen/size_text_small"
+                android:textColor="#FBFBFB"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/radioLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/radioImage"
+                android:background="@android:color/transparent"
+                android:layout_marginBottom="4dp"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_radio"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bn_radio"
+                android:letterSpacing="0.04"
+                android:textSize="@dimen/size_text_small"
                 android:textColor="#FBFBFB"/>
         </LinearLayout>
         <LinearLayout
@@ -59,13 +84,13 @@
                 android:paddingVertical="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_search_24"/>
+                android:src="@drawable/ic_search"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/bn_search"
                 android:letterSpacing="0.04"
-                android:textSize="12sp"
+                android:textSize="@dimen/size_text_small"
                 android:textColor="#FBFBFB"/>
         </LinearLayout>
         <LinearLayout
@@ -83,13 +108,13 @@
                 android:paddingVertical="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_library_music_24"/>
+                android:src="@drawable/ic_library_music"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/bn_library"
                 android:letterSpacing="0.04"
-                android:textSize="12sp"
+                android:textSize="@dimen/size_text_small"
                 android:textColor="#FBFBFB"/>
         </LinearLayout>
 
