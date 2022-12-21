@@ -6,12 +6,12 @@ data class Data(
     val hinh: String,
     val id_taixe: Int,
     val khuvuchoatdong: String,
-    val kinhdo: Double,
+    val kinhdo: Any,
     val matkhau: String,
     val sodienthoai: String,
-    val sosao: Int,
+    val sosao: Any,
     val tentaixe: String,
     val trangthaihoatdong: Int,
     val trangthaitk: Int,
-    val vido: Double
+    val vido: Any
 )

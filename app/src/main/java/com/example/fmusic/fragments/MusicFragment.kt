@@ -24,25 +24,25 @@ class MusicFragment : Fragment() {
         // Inflate the layout for this fragment
         mView = inflater.inflate(R.layout.fragment_music, container, false)
         txtFmMusic = mView.findViewById(R.id.txtFmMusic)
-        CallApi()
+       // CallApi()
         return mView
     }
 
-    private fun CallApi(){
-        val dataservice: Dataservice = APIService.getService
-        val retrofitData = dataservice.getTaiXe(1)
-        retrofitData.enqueue(object : Callback<TaiXeModel> {
-            override fun onResponse(call: Call<TaiXeModel>, response: Response<TaiXeModel>) {
-                val TaiXe = response.body()
-                if(TaiXe!= null){
-                    txtFmMusic.setText(TaiXe.data.diachi)
-                }else
-                {
-                    txtFmMusic.setText("Khong co gi")
-                }
-            }
-            override fun onFailure(call: Call<TaiXeModel>, t: Throwable) {}
-        })
-    }
+//    private fun CallApi(){
+//        val dataservice: Dataservice = APIService.getService
+//        val retrofitData = dataservice.getTaiXe(1)
+//        retrofitData.enqueue(object : Callback<TaiXeModel> {
+//            override fun onResponse(call: Call<TaiXeModel>, response: Response<TaiXeModel>) {
+//                val TaiXe = response.body()
+//                if(TaiXe!= null){
+//                    txtFmMusic.setText(TaiXe.data.diachi)
+//                }else
+//                {
+//                    txtFmMusic.setText("Khong co gi")
+//                }
+//            }
+//            override fun onFailure(call: Call<TaiXeModel>, t: Throwable) {}
+//        })
+//    }
 
 }
