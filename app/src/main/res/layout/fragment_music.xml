@@ -1,18 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.MusicFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/txtFmMusic"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+   <RelativeLayout
+       android:id="@+id/rlHeaderMusicScreen"
+       android:paddingHorizontal="@dimen/padding_default"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal">
+      <TextView
+          android:id="@+id/txtHello"
+          android:layout_alignParentLeft="true"
+          android:text="Good morning"
+          android:textStyle="bold"
+          android:textSize="@dimen/size_text_large"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"/>
+      <ImageView
+          android:id="@+id/btnSetting"
+          android:layout_alignParentRight="true"
+          android:layout_centerVertical="true"
+          android:layout_gravity="center"
+          android:src="@drawable/ic_setting"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"/>
+   </RelativeLayout>
+
+   <LinearLayout
+       android:id="@+id/cardForYou"
+       android:orientation="vertical"
+       android:layout_below="@+id/rlHeaderMusicScreen"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:padding="@dimen/padding_default">
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+
+         <de.hdodenhof.circleimageview.CircleImageView
+             android:id="@+id/imgCasiNewRelease"
+             android:layout_width="@dimen/size_image_small"
+             android:layout_height="@dimen/size_image_small"
+             android:src="@drawable/img_small_01" />
+
+         <LinearLayout
+             android:layout_marginLeft="@dimen/margin_small"
+             android:orientation="vertical"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content">
+            <TextView
+                android:text="@string/new_release_from"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/size_text_small"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/txtCasiNewRelease"
+                android:text="Low G"
+                android:textSize="@dimen/size_text_normal"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+         </LinearLayout>
+      </LinearLayout>
+
+      <androidx.cardview.widget.CardView
+         app:cardBackgroundColor="@color/s1"
+          android:layout_marginTop="@dimen/margin_upgrade"
+          app:cardCornerRadius="@dimen/border_radius_small"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+
+         <RelativeLayout
+             android:background="@android:color/transparent"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
+               <ImageView
+                   android:id="@+id/imgUpgradeCardForYou"
+                   android:scaleType="centerCrop"
+                   android:layout_alignParentLeft="true"
+                   android:src="@drawable/img_upgrade_01"
+                   android:layout_width="@dimen/size_image_upgrade"
+                   android:layout_height="@dimen/size_image_upgrade"/>
+
+
+            <LinearLayout
+                android:layout_marginVertical="@dimen/margin_normal"
+                android:layout_marginHorizontal="@dimen/margin_large"
+                android:background="@android:color/transparent"
+                android:layout_toRightOf="@+id/imgUpgradeCardForYou"
+                android:id="@+id/llTextCardForYou"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+               <TextView
+                   android:id="@+id/txtTenBaiHatCardForYou"
+                   android:text="Dáng xấu"
+                   android:background="@android:color/transparent"
+                   android:textSize="@dimen/size_text_normal"
+                   android:textStyle="bold"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"/>
+               <TextView
+                   android:id="@+id/txtTenCasiCardForYou"
+                   android:text="Low G"
+                   android:background="@android:color/transparent"
+                   android:textSize="@dimen/size_text_small"
+                   android:textStyle="bold"
+                   android:textColor="@color/grey"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/btnPlayMusicNewRelease"
+                android:background="@drawable/round_button"
+                android:layout_marginRight="@dimen/margin_upgrade"
+                android:layout_marginBottom="@dimen/margin_upgrade"
+                android:layout_alignParentRight="true"
+                android:layout_alignBottom="@+id/imgUpgradeCardForYou"
+                android:layout_width="@dimen/size_button_small"
+                android:layout_height="@dimen/size_button_small"
+                android:src="@drawable/ic_play_arrow" />
+         </RelativeLayout>
+
+      </androidx.cardview.widget.CardView>
+   </LinearLayout>
+
+
+   <LinearLayout
+       android:orientation="vertical"
+       android:padding="@dimen/padding_default"
+       android:layout_below="@+id/cardForYou"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+      <TextView
+          android:text="@string/for_you"
+          android:textStyle="bold"
+          android:textSize="@dimen/size_text_normal"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"/>
+
+      <androidx.recyclerview.widget.RecyclerView
+          android:id="@+id/rvAlbumForYou"
+          android:layout_marginTop="@dimen/margin_upgrade"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"/>
+   </LinearLayout>
 
 </RelativeLayout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="@dimen/margin_upgrade"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        app:cardCornerRadius="@dimen/border_radius_small"
+        android:layout_width="@dimen/size_image_large"
+        android:layout_height="@dimen/size_image_large">
+        <ImageView
+            android:id="@+id/imgAlbumItem"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_large_01"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="4dp"/>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/txtTenAlbumItem"
+        android:text="Tên Album"
+        android:textSize="@dimen/size_text_small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

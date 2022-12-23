@@ -3,6 +3,11 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
+apply plugin: 'kotlin-android-extensions'
+androidExtensions {
+    experimental = true
+}
+
 android {
     namespace 'com.example.fmusic'
     compileSdk 33
@@ -46,4 +51,5 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
 
     implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }

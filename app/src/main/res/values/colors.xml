@@ -2,7 +2,7 @@
 <resources>
     <!--base-->
     <color name="background">#0f0f0f</color>
-    <color name="white">#f9f9f9</color>
+    <color name="white">#fbfbfb</color>
     <color name="black">#111111</color>
     <color name="light_grey">#cfcfcf</color>
     <color name="grey">#888888</color>

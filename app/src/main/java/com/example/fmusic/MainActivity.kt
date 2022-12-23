@@ -1,13 +1,25 @@
 package com.example.fmusic
 
+import android.content.Context
+import android.content.Intent
 import android.graphics.Color
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.animation.ScaleAnimation
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.Toast
+import com.example.fmusic.activity.PlayActivity
 import com.example.fmusic.fragments.*
+import com.example.fmusic.models.BaiHatModel
+import com.example.fmusic.service_api.APIService
+import com.example.fmusic.service_api.Dataservice
+import com.squareup.picasso.Picasso
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,16 +27,69 @@ class MainActivity : AppCompatActivity() {
     private lateinit var radioLayout: LinearLayout
     private lateinit var searchLayout: LinearLayout
     private lateinit var libraryLayout: LinearLayout
-
     private lateinit var musicImage: ImageView
     private lateinit var radioImage: ImageView
     private lateinit var searchImage: ImageView
     private lateinit var libraryImage: ImageView
 
+
+    companion object {
+        var mediaPlayer: MediaPlayer = MediaPlayer()
+        var idTaiKhoan: Int = 1
+        lateinit var listBaiHatYeuThich: ArrayList<BaiHatModel>
+
+        @JvmStatic
+        fun GetListBaiHatYeuThich(context: Context){
+            val dataservice: Dataservice = APIService.getService
+            val retrofitData = dataservice.getListBaiHatYeuThichByTK(idTaiKhoan)
+            retrofitData.enqueue(object : Callback<List<BaiHatModel>> {
+                override fun onResponse(
+                    call: Call<List<BaiHatModel>>,
+                    response: Response<List<BaiHatModel>>
+                ) {
+                    val listBaiHat: ArrayList<BaiHatModel>? = response.body() as ArrayList<BaiHatModel>?
+                    if(listBaiHat != null){
+                        listBaiHatYeuThich = listBaiHat
+                    }
+                }
+                override fun onFailure(call: Call<List<BaiHatModel>>, t: Throwable) {
+                    Toast.makeText(context, t.message, Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        var moManHinh: String? = intent.getStringExtra("moManHinh")
         AnhXaView()
+        GetListBaiHatYeuThich(this@MainActivity)
+
+        if(moManHinh == null){
+            //set fragment mặc định hiển thị
+            supportFragmentManager.beginTransaction()
+                .setReorderingAllowed(true)
+                .replace(R.id.fragmentContainer, MusicFragment())
+                .commit()
+        }else{
+            if(moManHinh == "PlayListFragment"){
+                var listTheo: String? = intent.getStringExtra("listTheo")
+                var hinhList: String? = intent.getStringExtra("hinhList")
+                var tenList: String? = intent.getStringExtra("tenList")
+                var idList: Int? = intent.getIntExtra("idList", 0)
+
+                //set fragment
+                supportFragmentManager.beginTransaction()
+                    .setReorderingAllowed(true)
+                    .replace(R.id.fragmentContainer, PlayListFragment(listTheo!!, idList!!, hinhList!!, tenList!!))
+                    .commit()
+            }
+        }
+
+
+
         XuLyBottomNavigationBar()
     }
 
@@ -43,11 +108,7 @@ class MainActivity : AppCompatActivity() {
     private fun XuLyBottomNavigationBar(){
         var selectedTab: Int = 1
 
-        //set fragment mặc định hiển thị
-        supportFragmentManager.beginTransaction()
-            .setReorderingAllowed(true)
-            .replace(R.id.fragmentContainer, MusicFragment())
-            .commit()
+
 
         var nhanChuyenManHinh: View.OnClickListener? = null
         nhanChuyenManHinh = View.OnClickListener{
@@ -191,4 +252,6 @@ class MainActivity : AppCompatActivity() {
         libraryLayout.setOnClickListener(nhanChuyenManHinh)
 
     }
+
+
 }

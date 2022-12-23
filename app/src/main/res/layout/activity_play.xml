@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.PlayActivity">
+
+    <RelativeLayout
+        android:layout_alignParentTop="true"
+        android:id="@+id/rlHeaderPlayScreen"
+        android:padding="@dimen/padding_large"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageButton
+            android:id="@+id/btnBackFromPlayScreen"
+            android:background="@android:color/transparent"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/ic_arrow_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <ImageButton
+            android:background="@android:color/transparent"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_more_vert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardImgPlay"
+        app:cardCornerRadius="@dimen/border_radius_small"
+        android:layout_below="@+id/rlHeaderPlayScreen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="32dp">
+        <ImageView
+            android:id="@+id/ImgPlay"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_play_01"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_image_play"/>
+    </androidx.cardview.widget.CardView>
+
+    <RelativeLayout
+        android:id="@+id/rlThongTinBaiHatPlay"
+        android:padding="@dimen/padding_large"
+        android:layout_below="@+id/cardImgPlay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/txtTenBaiHatPlay"
+                android:text="Dáng xấu"
+                android:textSize="@dimen/size_text_large"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/txtTenCaSiPlay"
+                android:text="Low G"
+                android:textSize="@dimen/size_text_normal"
+                android:textStyle="bold"
+                android:textColor="@color/light_grey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <ImageButton
+            android:id="@+id/btnYeuThichPlay"
+            android:background="@android:color/transparent"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_favorite_border"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/llSeek"
+        android:padding="@dimen/padding_large"
+        android:layout_above="@+id/llActionPlayScreen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <SeekBar
+            android:id="@+id/sbPlayScreen"
+             android:layout_marginBottom="@dimen/margin_normal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <RelativeLayout
+            android:paddingHorizontal="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/txtCurrentDurationMusic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/size_text"
+                android:text="0:12"/>
+            <TextView
+                android:id="@+id/txtDurationMusic"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/size_text"
+                android:text="3:02"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llActionPlayScreen"
+        android:layout_alignParentBottom="true"
+        android:paddingHorizontal="@dimen/padding_large"
+        android:paddingBottom="@dimen/padding_large"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btnPreviousFromPlayScreen"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_skip_previous"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <ImageButton
+            android:id="@+id/btnPlay"
+            android:background="@drawable/round_button"
+            android:layout_marginHorizontal="@dimen/margin_large"
+            android:src="@drawable/ic_play_arrow"
+            android:layout_width="@dimen/size_button_large"
+            android:layout_height="@dimen/size_button_large"/>
+
+        <ImageButton
+            android:id="@+id/btnNextFromPlayScreen"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_skip_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>
