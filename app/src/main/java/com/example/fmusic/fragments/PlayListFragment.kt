@@ -36,8 +36,6 @@ class PlayListFragment(private var listTheo: String,private var idList: Int, pri
     private lateinit var txtTenPlayList: TextView
     private lateinit var btnPlayList: ImageButton
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -54,6 +52,7 @@ class PlayListFragment(private var listTheo: String,private var idList: Int, pri
 
         return mView
     }
+
 
     private fun AnhXa(){
         rvPlayList = mView.findViewById(R.id.rvPlaylist)
@@ -100,7 +99,7 @@ class PlayListFragment(private var listTheo: String,private var idList: Int, pri
                     btnPlayList.setOnClickListener(object : View.OnClickListener {
                         override fun onClick(view: View?) {
                             val intent = Intent(view!!.context, PlayActivity::class.java)
-                            intent.putParcelableArrayListExtra("listBaiHat", listBaiHat)
+                            intent.putExtra("listBaiHat", listBaiHat)
                             intent.putExtra("viTriBaiHat", 0)
                             startActivity(intent)
                         }

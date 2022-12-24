@@ -1,18 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.RadioFragment">
+    android:background="@color/s1"
+    tools:context=".fragments.RadioFragment"
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
+        android:padding="@dimen/padding_default"
+        android:background="@android:color/transparent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Radio Fragment"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:textSize="20sp"/>
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_alignParentLeft="true"
+            android:background="@android:color/transparent"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:background="@android:color/transparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_radio"
+                android:textSize="@dimen/size_text_large"
+                android:textStyle="bold" />
 
-</FrameLayout>
+            <LinearLayout
+                android:background="@android:color/transparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:background="@android:color/transparent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Playlist | "
+                    android:textColor="@color/grey"
+                    android:textSize="@dimen/size_text_normal"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:background="@android:color/transparent"
+                    android:id="@+id/txtSoLuongBaiHatListRadio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="@color/grey"
+                    android:textSize="@dimen/size_text_normal"
+                    android:textStyle="bold" />
+                <TextView
+                    android:background="@android:color/transparent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" songs"
+                    android:textColor="@color/grey"
+                    android:textSize="@dimen/size_text_normal"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageButton
+            android:layout_alignParentRight="true"
+            android:id="@+id/btnPlayListRadio"
+            android:layout_width="@dimen/size_button_normal"
+            android:layout_height="@dimen/size_button_normal"
+            android:background="@drawable/round_button_primary_color"
+            android:src="@drawable/ic_play_arrow_white" />
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPlaylistRadio"
+        android:padding="@dimen/padding_default"
+        android:layout_below="@+id/llHeaderPlayList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+</LinearLayout>

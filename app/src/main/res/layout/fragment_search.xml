@@ -1,18 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.SearchFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.SearchFragment"
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
+        android:padding="@dimen/padding_default"
+        android:background="@color/s1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Search Fragment"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:textSize="20sp"/>
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_alignParentLeft="true"
+            android:background="@android:color/transparent"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:background="@android:color/transparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_search"
+                android:textSize="@dimen/size_text_large"
+                android:textStyle="bold" />
 
-</FrameLayout>
+            <LinearLayout
+                android:background="@android:color/transparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:background="@android:color/transparent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Result | "
+                    android:textColor="@color/grey"
+                    android:textSize="@dimen/size_text_normal"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:background="@android:color/transparent"
+                    android:id="@+id/txtSoLuongBaiHatListSeach"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="@color/grey"
+                    android:textSize="@dimen/size_text_normal"
+                    android:textStyle="bold" />
+                <TextView
+                    android:background="@android:color/transparent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" songs"
+                    android:textColor="@color/grey"
+                    android:textSize="@dimen/size_text_normal"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchPlaylistBaiHat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:padding="@dimen/padding_default"
+        android:id="@+id/rvPlaylistSearch"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

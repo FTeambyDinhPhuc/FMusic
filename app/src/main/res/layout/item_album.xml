@@ -21,7 +21,6 @@
 
     <TextView
         android:id="@+id/txtTenAlbumItem"
-        android:text="Tên Album"
         android:textSize="@dimen/size_text_small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>

@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fmusic.R
@@ -40,17 +41,23 @@ class MusicFragment() : Fragment() {
     private lateinit var btnPlayBaiHatForYou: ImageButton
     private lateinit var imgCaSiNewRelease: CircleImageView
     private lateinit var txtTenCaSiNewRelease: TextView
+    private lateinit var btnMyRadio: ImageButton
+    private lateinit var transaction: FragmentTransaction
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         mView = inflater.inflate(R.layout.fragment_music, container, false)
+        transaction =  fragmentManager?.beginTransaction()!!
         AnhXa()
         SetHello()
         GetListAllBaiHat()
         GetListAlbum()
+        XuKienNhanNut()
         return mView
     }
+
+
 
     private fun AnhXa(){
         txtHello = mView.findViewById(R.id.txtHello)
@@ -61,6 +68,13 @@ class MusicFragment() : Fragment() {
         txtTenCaSiForYou = mView.findViewById(R.id.txtTenCasiCardForYou)
         btnPlayBaiHatForYou = mView.findViewById(R.id.btnPlayMusicNewRelease)
         rvAlbumForYou = mView.findViewById(R.id.rvAlbumForYou)
+        btnMyRadio = mView.findViewById(R.id.btnMyRadio)
+
+    }
+    private fun XuKienNhanNut() {
+        btnMyRadio.setOnClickListener{
+            transaction.replace(R.id.fragmentContainer,MyRadioFragment()).commit()
+        }
     }
 
     private fun SetHello(){
@@ -89,7 +103,7 @@ class MusicFragment() : Fragment() {
                 val listAlbum: List<AlbumModel>? = response.body()
                 if(listAlbum != null){
                     rvAlbumForYou.layoutManager = LinearLayoutManager(activity, RecyclerView.HORIZONTAL, false )
-                    albumAdapter = AlbumForYouRVAdapter(listAlbum)
+                    albumAdapter = AlbumForYouRVAdapter(listAlbum, transaction)
                     rvAlbumForYou.adapter = albumAdapter
                 }
             }
@@ -115,7 +129,7 @@ class MusicFragment() : Fragment() {
                     btnPlayBaiHatForYou.setOnClickListener(object : View.OnClickListener {
                         override fun onClick(view: View?) {
                             val intent = Intent(view!!.context, PlayActivity::class.java)
-                            intent.putParcelableArrayListExtra("listBaiHat", listBaiHat)
+                            intent.putExtra("listBaiHat", listBaiHat)
                             intent.putExtra("viTriBaiHat", 0)
                             startActivity(intent)
                         }

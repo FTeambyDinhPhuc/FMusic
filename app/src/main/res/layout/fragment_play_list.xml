@@ -39,7 +39,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:text="Rap Mix"
                 android:textSize="@dimen/size_text_large"
                 android:textStyle="bold" />
 
@@ -60,7 +59,7 @@
                     android:id="@+id/txtSoLuongBaiHat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="20"
+                    android:text="0"
                     android:textColor="@color/grey"
                     android:textSize="@dimen/size_text_normal"
                     android:textStyle="bold" />

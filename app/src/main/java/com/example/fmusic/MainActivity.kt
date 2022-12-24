@@ -14,6 +14,7 @@ import android.widget.Toast
 import com.example.fmusic.activity.PlayActivity
 import com.example.fmusic.fragments.*
 import com.example.fmusic.models.BaiHatModel
+import com.example.fmusic.models.TaiKhoanModel
 import com.example.fmusic.service_api.APIService
 import com.example.fmusic.service_api.Dataservice
 import com.squareup.picasso.Picasso
@@ -35,80 +36,44 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         var mediaPlayer: MediaPlayer = MediaPlayer()
-        var idTaiKhoan: Int = 1
-        lateinit var listBaiHatYeuThich: ArrayList<BaiHatModel>
-
-        @JvmStatic
-        fun GetListBaiHatYeuThich(context: Context){
-            val dataservice: Dataservice = APIService.getService
-            val retrofitData = dataservice.getListBaiHatYeuThichByTK(idTaiKhoan)
-            retrofitData.enqueue(object : Callback<List<BaiHatModel>> {
-                override fun onResponse(
-                    call: Call<List<BaiHatModel>>,
-                    response: Response<List<BaiHatModel>>
-                ) {
-                    val listBaiHat: ArrayList<BaiHatModel>? = response.body() as ArrayList<BaiHatModel>?
-                    if(listBaiHat != null){
-                        listBaiHatYeuThich = listBaiHat
-                    }
-                }
-                override fun onFailure(call: Call<List<BaiHatModel>>, t: Throwable) {
-                    Toast.makeText(context, t.message, Toast.LENGTH_SHORT).show()
-                }
-            })
-        }
+        lateinit var mTaiKhoan: TaiKhoanModel
     }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        var moManHinh: String? = intent.getStringExtra("moManHinh")
-        AnhXaView()
-        GetListBaiHatYeuThich(this@MainActivity)
-
-        if(moManHinh == null){
-            //set fragment mặc định hiển thị
-            supportFragmentManager.beginTransaction()
-                .setReorderingAllowed(true)
-                .replace(R.id.fragmentContainer, MusicFragment())
-                .commit()
-        }else{
-            if(moManHinh == "PlayListFragment"){
-                var listTheo: String? = intent.getStringExtra("listTheo")
-                var hinhList: String? = intent.getStringExtra("hinhList")
-                var tenList: String? = intent.getStringExtra("tenList")
-                var idList: Int? = intent.getIntExtra("idList", 0)
-
-                //set fragment
-                supportFragmentManager.beginTransaction()
-                    .setReorderingAllowed(true)
-                    .replace(R.id.fragmentContainer, PlayListFragment(listTheo!!, idList!!, hinhList!!, tenList!!))
-                    .commit()
-            }
+        var taiKhoan: TaiKhoanModel? = intent.getParcelableExtra("taiKhoan")
+        if(taiKhoan != null){
+            mTaiKhoan = taiKhoan
         }
 
 
+        AnhXaView()
+
+        //set fragment mặc định hiển thị
+        supportFragmentManager.beginTransaction()
+            .setReorderingAllowed(true)
+            .replace(R.id.fragmentContainer, MusicFragment())
+            .commit()
 
         XuLyBottomNavigationBar()
     }
 
     private fun AnhXaView(){
-        musicLayout = findViewById<LinearLayout>(R.id.musicLayout)
-        radioLayout = findViewById<LinearLayout>(R.id.radioLayout)
-        searchLayout = findViewById<LinearLayout>(R.id.searchLayout)
-        libraryLayout = findViewById<LinearLayout>(R.id.libraryLayout)
+        musicLayout = findViewById(R.id.musicLayout)
+        radioLayout = findViewById(R.id.radioLayout)
+        searchLayout = findViewById(R.id.searchLayout)
+        libraryLayout = findViewById(R.id.libraryLayout)
 
-        musicImage = findViewById<ImageView>(R.id.musicImage)
-        radioImage = findViewById<ImageView>(R.id.radioImage)
-        searchImage = findViewById<ImageView>(R.id.searchImage)
-        libraryImage = findViewById<ImageView>(R.id.libraryImage)
+        musicImage = findViewById(R.id.musicImage)
+        radioImage = findViewById(R.id.radioImage)
+        searchImage = findViewById(R.id.searchImage)
+        libraryImage = findViewById(R.id.libraryImage)
     }
 
     private fun XuLyBottomNavigationBar(){
         var selectedTab: Int = 1
-
-
 
         var nhanChuyenManHinh: View.OnClickListener? = null
         nhanChuyenManHinh = View.OnClickListener{

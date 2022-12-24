@@ -1,16 +1,19 @@
 package com.example.fmusic.activity
 
+import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.view.View
 import android.widget.*
 import androidx.core.net.toUri
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fmusic.MainActivity
 import com.example.fmusic.R
-import com.example.fmusic.models.BaiHatModel
-import com.example.fmusic.models.CaSiModel
+import com.example.fmusic.adapters.PlayListAdapter
+import com.example.fmusic.models.*
 import com.example.fmusic.service_api.APIService
 import com.example.fmusic.service_api.Dataservice
 import com.squareup.picasso.Picasso
@@ -34,7 +37,6 @@ class PlayActivity : AppCompatActivity() {
     private lateinit var btnYeuThich: ImageButton
     private var baiHatYeuThich: Boolean = false
     private var viTriBaiHat: Int = 0
-    private lateinit var listBaiHatYeuThich: ArrayList<BaiHatModel>
     private lateinit var runnable: Runnable
     private  var handler = Handler()
     private var mediaPlayer: MediaPlayer = MainActivity.mediaPlayer
@@ -47,8 +49,6 @@ class PlayActivity : AppCompatActivity() {
 
         val listBaiHat: ArrayList<BaiHatModel>? = intent.getParcelableArrayListExtra("listBaiHat")
         viTriBaiHat = intent.getIntExtra("viTriBaiHat", 0)
-
-        getListYeuThich()
 
         if(listBaiHat != null){
             CreateMediaPlayer(listBaiHat)
@@ -73,32 +73,45 @@ class PlayActivity : AppCompatActivity() {
         txtCurrentDurationMusic = findViewById(R.id.txtCurrentDurationMusic)
         btnYeuThich = findViewById(R.id.btnYeuThichPlay)
     }
-    private fun getListYeuThich(){
-        listBaiHatYeuThich = MainActivity.listBaiHatYeuThich
+    private fun kiemTraYeuThich(listBaiHat: ArrayList<BaiHatModel>){
+        val dataservice: Dataservice = APIService.getService
+        val retrofitData = dataservice.getALlBaiHatYeuThichByTK(MainActivity.mTaiKhoan.id_taikhoan)
+        retrofitData.enqueue(object : Callback<List<BaiHatModel>> {
+            override fun onResponse(
+                call: Call<List<BaiHatModel>>,
+                response: Response<List<BaiHatModel>>
+            ) {
+                val listBaiHatYeuThich: List<BaiHatModel>? = response.body()
+                if(listBaiHatYeuThich != null){
+                    baiHatYeuThich =  false
+                    if(listBaiHatYeuThich.size != 0){
+                        listBaiHatYeuThich.forEach {
+                            if( it.id_baihat == listBaiHat[viTriBaiHat].id_baihat){
+                                baiHatYeuThich =  true
+                            }
+                        }
+                    }
+                    if(baiHatYeuThich){
+                        btnYeuThich.setImageResource(R.drawable.ic_favorite_selected)
+                    }else{
+                        btnYeuThich.setImageResource(R.drawable.ic_favorite_border)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<List<BaiHatModel>>, t: Throwable) {
+                Toast.makeText(this@PlayActivity, t.message, Toast.LENGTH_SHORT).show()
+            }
+
+        })
     }
     private fun SetLayout(listBaiHat: ArrayList<BaiHatModel>){
-        setBtnFavorite(listBaiHat)
+        kiemTraYeuThich(listBaiHat)
         GetListCaSiByBaiHat(listBaiHat[viTriBaiHat].id_baihat)
         Picasso.get().load(listBaiHat[viTriBaiHat].hinhbaihat).into(imgPlay)
         txtTenBaiHatPlay.setText(listBaiHat[viTriBaiHat].tenbaihat)
         txtDurationMusic.setText(FormatDuration(mediaPlayer.duration.toLong()))
         btnPlay.setImageResource(R.drawable.ic_pause)
-    }
-
-    private fun setBtnFavorite(listBaiHat: ArrayList<BaiHatModel>){
-        baiHatYeuThich =  false
-        if(listBaiHatYeuThich.size != 0){
-            listBaiHatYeuThich.forEach {
-                if( it.id_baihat == listBaiHat[viTriBaiHat].id_baihat){
-                    baiHatYeuThich =  true
-                }
-            }
-        }
-        if(baiHatYeuThich){
-            btnYeuThich.setImageResource(R.drawable.ic_favorite_selected)
-        }else{
-            btnYeuThich.setImageResource(R.drawable.ic_favorite_border)
-        }
     }
 
     private fun CreateMediaPlayer(listBaiHat: ArrayList<BaiHatModel>){
@@ -161,9 +174,9 @@ class PlayActivity : AppCompatActivity() {
 
         btnYeuThich.setOnClickListener{
             if(baiHatYeuThich){
-                Toast.makeText(this@PlayActivity, "Đã xóa khỏi danh sách yêu thích", Toast.LENGTH_SHORT).show()
+                XoaBaiHatYeuThich(listBaiHat)
             }else{
-                Toast.makeText(this@PlayActivity,"Đã thêm vào yêu thích", Toast.LENGTH_SHORT).show()
+                ThemBaiHatYeuThich(listBaiHat)
             }
         }
     }
@@ -226,6 +239,56 @@ class PlayActivity : AppCompatActivity() {
         CreateMediaPlayer(listBaiHat)
         SetLayout(listBaiHat)
         SetSeekBar()
+    }
+
+    private fun ThemBaiHatYeuThich(listBaiHat: ArrayList<BaiHatModel>){
+        val dataservice: Dataservice = APIService.getService
+        val retrofitData = dataservice.themBaiHatYeuThich(MainActivity.mTaiKhoan.id_taikhoan, listBaiHat[viTriBaiHat].id_baihat)
+        retrofitData.enqueue(object : Callback<ResponseModel> {
+            override fun onResponse(call: Call<ResponseModel>, response: Response<ResponseModel>) {
+                val responseBody: ResponseModel? = response.body()
+                if (responseBody != null) {
+                    if (!responseBody.error) {
+                        kiemTraYeuThich(listBaiHat)
+                    }
+                    Toast.makeText(
+                        this@PlayActivity,
+                        responseBody.message.toString(),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseModel>, t: Throwable) {
+                Toast.makeText(this@PlayActivity, t.message, Toast.LENGTH_SHORT).show()
+            }
+
+
+        })
+    }
+
+    private fun XoaBaiHatYeuThich(listBaiHat: ArrayList<BaiHatModel>){
+        val dataservice: Dataservice = APIService.getService
+        val retrofitData = dataservice.xoaBaiHatYeuThich(MainActivity.mTaiKhoan.id_taikhoan, listBaiHat[viTriBaiHat].id_baihat)
+        retrofitData.enqueue(object : Callback<ResponseModel> {
+            override fun onResponse(call: Call<ResponseModel>, response: Response<ResponseModel>) {
+                val responseBody: ResponseModel? = response.body()
+                if (responseBody != null) {
+                    if (!responseBody.error) {
+                        kiemTraYeuThich(listBaiHat)
+                    }
+                    Toast.makeText(
+                        this@PlayActivity,
+                        responseBody.message.toString(),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseModel>, t: Throwable) {
+                Toast.makeText(this@PlayActivity, t.message, Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
 }

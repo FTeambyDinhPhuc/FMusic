@@ -20,8 +20,9 @@
           android:textSize="@dimen/size_text_large"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"/>
-      <ImageView
-          android:id="@+id/btnSetting"
+      <ImageButton
+          android:id="@+id/btnMyRadio"
+          android:background="@android:color/transparent"
           android:layout_alignParentRight="true"
           android:layout_centerVertical="true"
           android:layout_gravity="center"
@@ -45,8 +46,7 @@
          <de.hdodenhof.circleimageview.CircleImageView
              android:id="@+id/imgCasiNewRelease"
              android:layout_width="@dimen/size_image_small"
-             android:layout_height="@dimen/size_image_small"
-             android:src="@drawable/img_small_01" />
+             android:layout_height="@dimen/size_image_small" />
 
          <LinearLayout
              android:layout_marginLeft="@dimen/margin_small"
@@ -62,7 +62,6 @@
                 android:layout_height="wrap_content"/>
             <TextView
                 android:id="@+id/txtCasiNewRelease"
-                android:text="Low G"
                 android:textSize="@dimen/size_text_normal"
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
@@ -85,7 +84,6 @@
                    android:id="@+id/imgUpgradeCardForYou"
                    android:scaleType="centerCrop"
                    android:layout_alignParentLeft="true"
-                   android:src="@drawable/img_upgrade_01"
                    android:layout_width="@dimen/size_image_upgrade"
                    android:layout_height="@dimen/size_image_upgrade"/>
 
@@ -101,7 +99,6 @@
                 android:orientation="vertical">
                <TextView
                    android:id="@+id/txtTenBaiHatCardForYou"
-                   android:text="Dáng xấu"
                    android:background="@android:color/transparent"
                    android:textSize="@dimen/size_text_normal"
                    android:textStyle="bold"
@@ -109,7 +106,6 @@
                    android:layout_height="wrap_content"/>
                <TextView
                    android:id="@+id/txtTenCasiCardForYou"
-                   android:text="Low G"
                    android:background="@android:color/transparent"
                    android:textSize="@dimen/size_text_small"
                    android:textStyle="bold"

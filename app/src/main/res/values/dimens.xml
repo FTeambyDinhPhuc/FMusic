@@ -19,6 +19,8 @@
     <dimen name="size_image_large">148dp</dimen>
     <dimen name="size_image_play">296dp</dimen>
 
+    <dimen name="height_edit_text">56dp</dimen>
+
     <dimen name="padding_small">8dp</dimen>
     <dimen name="padding_default">16dp</dimen>
     <dimen name="padding_large">32dp</dimen>
@@ -27,6 +29,7 @@
     <dimen name="margin_normal">8dp</dimen>
     <dimen name="margin_upgrade">12dp</dimen>
     <dimen name="margin_large">16dp</dimen>
+    <dimen name="margin_large_s">24dp</dimen>
 
     <dimen name="border_radius_small">8dp</dimen>
     <dimen name="border_radius_normal">16dp</dimen>
