@@ -1,5 +1,6 @@
 package com.example.fmusic.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +12,8 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fmusic.R
+import com.example.fmusic.activity.PlayActivity
+import com.example.fmusic.activity.PlayRadioActivity
 import com.example.fmusic.adapters.PlayListRadioAdapter
 import com.example.fmusic.models.RadioModel
 import com.example.fmusic.service_api.APIService
@@ -59,6 +62,15 @@ class RadioFragment : Fragment() {
                     playListRadioAdapter = PlayListRadioAdapter(listRadio as ArrayList<RadioModel>)
                     rvPlayListRadio.adapter = playListRadioAdapter
                     txtSoLuongBaiHatRadio.setText(listRadio.size.toString())
+                    btnPlayListRadio.setOnClickListener(object : View.OnClickListener {
+                        override fun onClick(view: View?) {
+                            val intent = Intent(view!!.context, PlayRadioActivity::class.java)
+                            intent.putExtra("listRadio", listRadio)
+                            intent.putExtra("viTriRadio", 0)
+                            startActivity(intent)
+                        }
+
+                    })
                 }
             }
 

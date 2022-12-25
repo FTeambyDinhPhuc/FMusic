@@ -9,11 +9,14 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fmusic.MainActivity
 import com.example.fmusic.R
+import com.example.fmusic.activity.LoginActivity
 import com.example.fmusic.activity.SignUpActivity
 import com.example.fmusic.activity.UpRadioActivity
 import com.example.fmusic.adapters.MyRadioAdapter
@@ -56,7 +59,22 @@ class MyRadioFragment : Fragment() {
     private fun SuKienNhanNut() {
         btnNavUpRadio.setOnClickListener{
             val intent = Intent(activity, UpRadioActivity::class.java)
+           // startActivity(intent)
+            getNewAddRadio.launch(intent)
+        }
+        btnLogout.setOnClickListener{
+            val intent = Intent(activity, LoginActivity::class.java)
             startActivity(intent)
+            activity?.finish()
+        }
+    }
+
+    val getNewAddRadio = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult? ->
+        if(result != null){
+            val resultCode: Int = result.resultCode
+            if(resultCode == 22){
+                GetListRadioByTK()
+            }
         }
     }
 

@@ -88,6 +88,7 @@ class LoginActivity : AppCompatActivity() {
                             val intent = Intent(this@LoginActivity, MainActivity::class.java)
                             intent.putExtra("taiKhoan", taikhoan)
                             startActivity(intent)
+                            finish()
                         }
                     }
                     mProgressDialog.dismiss()

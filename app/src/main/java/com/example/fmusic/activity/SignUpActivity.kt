@@ -70,7 +70,7 @@ class SignUpActivity : AppCompatActivity() {
                         val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
                         intent.putExtra("userNameSignup", userName)
                         setResult(1,intent)
-                       finish()
+                        finish()
                     }
                     Toast.makeText(
                         this@SignUpActivity,

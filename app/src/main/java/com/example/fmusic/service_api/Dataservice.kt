@@ -56,6 +56,13 @@ interface Dataservice {
     ): Call<ResponseModel>
 
     @FormUrlEncoded
+    @POST("nhac/XoaBaiHatKhoiDanhSachYeuThich")
+    fun xoaBaiHatYeuThich(
+        @Field("id_taikhoan") idTaiKhoan: Int,
+        @Field("id_baihat") idBaiHat: Int
+    ): Call<ResponseModel>
+
+    @FormUrlEncoded
     @POST("nhac/upradio")
     fun themRaido(
         @Field("id_taikhoan") idTaiKhoan: Int,
@@ -72,12 +79,6 @@ interface Dataservice {
         @Part file: MultipartBody.Part,
     ): Call<ResponseUpFileModel>
 
-    @FormUrlEncoded
-    @DELETE("nhac/XoaBaiHatKhoiDanhSachYeuThich")
-    fun xoaBaiHatYeuThich(
-        @Field("id_taikhoan") idTaiKhoan: Int,
-        @Field("id_baihat") idBaiHat: Int
-    ): Call<ResponseModel>
 
     @DELETE("nhac/delradio/{idRadio}")
     fun xoaRadio(@Path("idRadio") idRadio: Int): Call<ResponseModel>

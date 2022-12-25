@@ -65,6 +65,10 @@ class UpRadioActivity : AppCompatActivity() {
         btnUpRadio.setOnClickListener{
             upFile()
         }
+
+        btnbackFromUpRadioScreen.setOnClickListener{
+            finish()
+        }
     }
 
     private fun openGallery() {
@@ -138,6 +142,7 @@ class UpRadioActivity : AppCompatActivity() {
                 val responseBody: ResponseModel? = response.body()
                 if (responseBody != null) {
                     if (!responseBody.error) {
+                        setResult(22)
                         finish()
                     }
                     mProgressDialog.dismiss()

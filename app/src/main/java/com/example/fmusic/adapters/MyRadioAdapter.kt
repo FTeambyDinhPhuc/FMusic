@@ -50,7 +50,7 @@ class MyRadioAdapter(listRadio: ArrayList<RadioModel>, private var context: Frag
         })
 
         holder.btnXoa.setOnClickListener{
-            xoaRadio(mListMyRadio[position].id_radio)
+            xoaRadio(mListMyRadio[position].id_radio, position)
         }
     }
 
@@ -59,7 +59,7 @@ class MyRadioAdapter(listRadio: ArrayList<RadioModel>, private var context: Frag
     }
 
 
-    private fun xoaRadio(idRadio: Int){
+    private fun xoaRadio(idRadio: Int, position: Int){
         val dataservice: Dataservice = APIService.getService
         val retrofitData = dataservice.xoaRadio(idRadio)
         retrofitData.enqueue(object : Callback<ResponseModel> {
@@ -67,7 +67,8 @@ class MyRadioAdapter(listRadio: ArrayList<RadioModel>, private var context: Frag
                 val responseBody: ResponseModel? = response.body()
                 if (responseBody != null) {
                     if (!responseBody.error) {
-
+                        mListMyRadio.removeAt(position)
+                        notifyDataSetChanged()
                     }
                     Toast.makeText(
                         context,
